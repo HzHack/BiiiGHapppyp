@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>عيد ميلاد حبيبتي 💖</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      z-index: 2;
+    }
+
+    .header {
+      margin-bottom: 40px;
+    }
+
+    .logo {
+      font-size: 2.5rem;
+      color: #ffd700;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #ffd700;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      line-height: 1.7;
+      color: #e0e0ff;
+    }
+
+    .countdown {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 20px;
+      padding: 30px;
+      margin: 30px 0;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+      border: 2px solid rgba(255, 215, 0, 0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .countdown-display {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    .countdown-item {
+      background: rgba(25, 40, 80, 0.8);
+      border-radius: 15px;
+      padding: 25px 15px;
+      min-width: 180px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .countdown-number {
+      font-size: 4.5rem;
+      font-weight: bold;
+      color: #ffd700;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+      margin-bottom: 10px;
+    }
+
+    .countdown-label {
+      font-size: 1.3rem;
+      color: #a0a0ff;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 1.1rem;
+      color: #c0c0ff;
+      max-width: 800px;
+      line-height: 1.7;
+    }
+
+    .surprise-page {
+      display: none;
+      text-align: center;
+      padding: 40px;
+      animation: fadeIn 2s;
+    }
+
+    .surprise-content {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 25px;
+      padding: 50px;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+      border: 3px solid #ffd700;
+    }
+
+    .surprise-title {
+      font-size: 3.5rem;
+      color: #ffd700;
+      margin-bottom: 30px;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+    }
+
+    .surprise-message {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+      line-height: 1.8;
+      color: #ffffff;
+    }
+
+    .poem {
+      font-size: 1.4rem;
+      line-height: 2;
+      margin-top: 30px;
+      color: #ffdddd;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #ffd700;
+      top: -10px;
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      animation: twinkle 5s infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) translateX(var(--x-end)) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <div class="container" id="countdown-container">
+    <div class="header">
+      <div class="logo"><i class="fas fa-hourglass-half"></i></div>
+      <h1>العد التنازلي لعيد ميلاد حبيبتي 💖</h1>
+      <p class="subtitle">
+        كل ثانية تقربنا من اللحظة اللي قلبك يستحقها. يومك المميز اقترب يا أجمل من عرفت 💫
+      </p>
+    </div>
+
+    <div class="countdown">
+      <div class="countdown-display">
+        <div class="countdown-item"><div class="countdown-number" id="days">00</div><div class="countdown-label">أيام</div></div>
+        <div class="countdown-item"><div class="countdown-number" id="hours">00</div><div class="countdown-label">ساعات</div></div>
+        <div class="countdown-item"><div class="countdown-number" id="minutes">00</div><div class="countdown-label">دقائق</div></div>
+        <div class="countdown-item"><div class="countdown-number" id="seconds">00</div><div class="countdown-label">ثواني</div></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>العد التنازلي مستمر... والمفاجأة قريبة! 💝</p>
+      <p>بتوقيع محبك 💌</p>
+    </div>
+  </div>
+
+  <div class="surprise-page" id="surprise-page">
+    <div class="surprise-content">
+      <h1 class="surprise-title">عيد ميلاد سعيد يا أجمل ما رأت عيني! 🎉</h1>
+      <p class="surprise-message">
+        اليوم مو مثل أي يوم، اليوم انولد فيه أجمل قلب، أرق إنسانة، وروحي الثانية 💖<br>
+        كل سنة وأنتِ بألف خير، وكل لحظة فيكِ سعادة ما تنتهي 🌹
+      </p>
+      <div class="poem">
+        كل عام وانتِ بخير يا أحلى ملاك<br>
+        يا شمعة حياتي وضياء المساء<br>
+        وجودك نعمة، وضحكتك أفلاك<br>
+        وياكِ العمر يحلى بكل الصفاء
+      </div>
+    </div>
+  </div>
+
+  <!-- الموسيقى الجديدة (تشغيل تلقائي عند ظهور صفحة المفاجأة) -->
+  <video id="bg-music" autoplay loop muted controls style="display: none;">
+    <source src="Download.mp4" type="video/mp4">
+    متصفحك لا يدعم تشغيل الموسيقى.
+  </video>
+
+  <script>
+    const endDate = new Date("2025-11-29T00:00:00").getTime();
+
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 200; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.width = `${Math.random() * 3}px`;
+      star.style.height = star.style.width;
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      starsContainer.appendChild(star);
+    }
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = endDate - now;
+
+      if (distance <= 0) {
+        document.getElementById('countdown-container').style.display = 'none';
+        document.getElementById('surprise-page').style.display = 'block';
+        document.getElementById('bg-music').muted = false; // تشغيل الصوت
+        createConfetti();
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerText = days.toString().padStart(2, '0');
+      document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+    }
+
+    function createConfetti() {
+      const colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#ffbe0b', '#fb5607', '#8338ec'];
+      for (let i = 0; i < 150; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = `${Math.random() * 100}%`;
+        confetti.style.width = `${Math.random() * 10 + 5}px`;
+        confetti.style.height = confetti.style.width;
+        confetti.style.animation = `fall ${Math.random() * 5 + 3}s linear forwards`;
+        confetti.style.setProperty('--x-end', `${(Math.random() - 0.5) * 200}px`);
+        document.body.appendChild(confetti);
+        setTimeout(() => {
+          confetti.style.opacity = '1';
+          confetti.style.transform = `translateY(${window.innerHeight}px) translateX(var(--x-end)) rotate(${Math.random() * 720}deg)`;
+        }, 10);
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }
+      setInterval(createConfetti, 1500);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
